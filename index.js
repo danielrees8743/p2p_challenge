@@ -111,6 +111,7 @@ const createOptionNodes = (filterOptions, appendToElement) => {
   filterOptions.forEach((option) => {
     const optionNode = document.createElement('option');
     optionNode.setAttribute('value', option);
+
     const optionText = document.createTextNode(
       option.charAt(0).toUpperCase() + option.slice(1)
     );
@@ -122,7 +123,12 @@ const createOptionNodes = (filterOptions, appendToElement) => {
 const createOptions = () => {
   const options = getOptions();
   for (const optionType in options) {
-    createOptionNodes(options[optionType], filterMap[optionType]);
+    // const filterOptions = options[optionType];
+    // console.log(filterOptions);
+    const uniqueOptions = [...new Set(options[optionType])];
+    // console.log(uniqueOptions);
+    createOptionNodes(uniqueOptions, filterMap[optionType]);
+    // createOptionNodes(options[optionType], filterMap[optionType]);
   }
 };
 

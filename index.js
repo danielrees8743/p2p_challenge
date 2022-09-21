@@ -1,11 +1,11 @@
-import characters from "./data/characters.json" assert { type: "json" };
+import characters from './data/characters.json' assert { type: 'json' };
 
 /* ELEMENTS */
-const characterContainer = document.getElementById("character-container");
-const genderFilter = document.getElementById("gender");
-const speciesFilter = document.getElementById("species");
-const statusFilter = document.getElementById("status");
-const search = document.getElementById("search");
+const characterContainer = document.getElementById('character-container');
+const genderFilter = document.getElementById('gender');
+const speciesFilter = document.getElementById('species');
+const statusFilter = document.getElementById('status');
+const search = document.getElementById('search');
 
 const filterMap = {
   gender: genderFilter,
@@ -15,7 +15,7 @@ const filterMap = {
 
 /* CONSTANTS */
 
-const SELECT_ALL_TEXT = "Select all";
+const SELECT_ALL_TEXT = 'Select all';
 
 /* Variables */
 let chosenIds = [];
@@ -25,41 +25,41 @@ let chosenIds = [];
 const printCards = (characters) => {
   characters.forEach((character) => {
     const { id, name, image, status, species, gender, points } = character;
-    const card = document.createElement("div");
-    card.classList.add("card");
+    const card = document.createElement('div');
+    card.classList.add('card');
 
-    const textContainer = document.createElement("div");
-    textContainer.classList.add("card-container");
+    const textContainer = document.createElement('div');
+    textContainer.classList.add('card-container');
 
-    const titleElement = document.createElement("h2");
+    const titleElement = document.createElement('h2');
     const titleText = document.createTextNode(name);
     titleElement.appendChild(titleText);
 
-    const img = document.createElement("img");
-    img.setAttribute("src", image);
+    const img = document.createElement('img');
+    img.setAttribute('src', image);
 
-    const statusElement = document.createElement("p");
+    const statusElement = document.createElement('p');
     const statusText = document.createTextNode(`Status: ${status}`);
     statusElement.appendChild(statusText);
 
-    const speciesElement = document.createElement("p");
+    const speciesElement = document.createElement('p');
     const speciesText = document.createTextNode(`Species: ${species}`);
     speciesElement.appendChild(speciesText);
 
-    const genderElement = document.createElement("p");
+    const genderElement = document.createElement('p');
     const genderText = document.createTextNode(`Sex: ${gender}`);
     genderElement.appendChild(genderText);
 
-    const pointsElement = document.createElement("p");
+    const pointsElement = document.createElement('p');
     const pointsText = document.createTextNode(`Points: ${points}`);
     pointsElement.appendChild(pointsText);
 
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
-    const button = document.createElement("button");
-    button.setAttribute("id", `${id}`);
-    button.classList.add("choose-button");
-    const buttonText = document.createTextNode("Choose");
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+    const button = document.createElement('button');
+    button.setAttribute('id', `${id}`);
+    button.classList.add('choose-button');
+    const buttonText = document.createTextNode('Choose');
     button.appendChild(buttonText);
     buttonContainer.appendChild(button);
 
@@ -77,7 +77,7 @@ const printCards = (characters) => {
 };
 
 const cleanCardContainer = () => {
-  characterContainer.innerHTML = "";
+  characterContainer.innerHTML = '';
 };
 
 /* SELECT */
@@ -102,15 +102,15 @@ const getOptions = () => {
 
 const createOptionNodes = (filterOptions, appendToElement) => {
   // select all
-  const selectAllOption = document.createElement("option");
-  selectAllOption.setAttribute("value", "all");
+  const selectAllOption = document.createElement('option');
+  selectAllOption.setAttribute('value', 'all');
   const optionText = document.createTextNode(SELECT_ALL_TEXT);
   selectAllOption.appendChild(optionText);
   appendToElement.appendChild(selectAllOption);
 
   filterOptions.forEach((option) => {
-    const optionNode = document.createElement("option");
-    optionNode.setAttribute("value", option);
+    const optionNode = document.createElement('option');
+    optionNode.setAttribute('value', option);
     const optionText = document.createTextNode(
       option.charAt(0).toUpperCase() + option.slice(1)
     );
@@ -129,10 +129,10 @@ const createOptions = () => {
 createOptions();
 
 /* CHOSEN SECTION */
-const chosenContainer = document.getElementById("chosen-container");
+const chosenContainer = document.getElementById('chosen-container');
 
 const cleanChosenContainer = () => {
-  chosenContainer.innerHTML = "";
+  chosenContainer.innerHTML = '';
 };
 
 const createChosenCards = (chosenIds) => {
@@ -140,20 +140,20 @@ const createChosenCards = (chosenIds) => {
   chosenIds.forEach((chosenId) => {
     const chosen = characters.find((character) => chosenId === character.id);
 
-    const card = document.createElement("div");
-    card.classList.add("chosen-card");
+    const card = document.createElement('div');
+    card.classList.add('chosen-card');
 
-    const avatar = document.createElement("img");
-    avatar.setAttribute("src", chosen.image);
+    const avatar = document.createElement('img');
+    avatar.setAttribute('src', chosen.image);
 
-    const textElement = document.createElement("p");
+    const textElement = document.createElement('p');
     const text = document.createTextNode(chosen.name);
     textElement.appendChild(text);
 
-    const button = document.createElement("button");
-    const textButton = document.createTextNode("Remove");
-    card.classList.add("remove-button");
-    button.setAttribute("id", chosen.id);
+    const button = document.createElement('button');
+    const textButton = document.createTextNode('Remove');
+    card.classList.add('remove-button');
+    button.setAttribute('id', chosen.id);
     button.appendChild(textButton);
 
     card.appendChild(avatar);
@@ -166,16 +166,16 @@ const createChosenCards = (chosenIds) => {
 
 // EVENT LISTENERS
 const addEventListenerToChooseButtons = () => {
-  const chooseButtons = document.getElementsByClassName("choose-button");
+  const chooseButtons = document.getElementsByClassName('choose-button');
   Array.from(chooseButtons).forEach((button) => {
-    button.addEventListener("click", chooseCharacter);
+    button.addEventListener('click', chooseCharacter);
   });
 };
 
 const addEventListenerToRemoveButtons = () => {
-  const chooseButtons = document.getElementsByClassName("remove-button");
+  const chooseButtons = document.getElementsByClassName('remove-button');
   Array.from(chooseButtons).forEach((button) => {
-    button.addEventListener("click", () => {});
+    button.addEventListener('click', () => {});
   });
 };
 
@@ -206,8 +206,8 @@ const createCards = () => {
   });
 
   if (filtered.length === 0) {
-    const textElement = document.createElement("p");
-    const text = document.createTextNode("No character matches the filter");
+    const textElement = document.createElement('p');
+    const text = document.createTextNode('No character matches the filter');
     textElement.appendChild(text);
     characterContainer.appendChild(textElement);
     addEventListenerToChooseButtons();
@@ -234,7 +234,9 @@ const removeCharacter = (e) => {
   createCards();
 };
 
-search.addEventListener("input", createCards);
+search.addEventListener('input', createCards);
 for (const filter in filterMap) {
-  filterMap[filter].addEventListener("input", createCards);
+  filterMap[filter].addEventListener('input', createCards);
 }
+
+printCards(characters);
